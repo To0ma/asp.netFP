@@ -1,0 +1,40 @@
+﻿@model IEnumerable<YtBookStore.Models.Domain.Genre>
+@{
+	ViewData["Title"] = "Add";
+}
+<div class="container pt-5">
+	<div class="row">
+		<div class="col-md-6">
+			@if (TempData["msg"] != null)
+				{
+					<div class="form-group">
+						@TempData["msg"]
+					</div>
+				}
+			<div class="col-md-6">
+				<a class="btn btn-dark" href="/Genre/Add">Add more</a>
+			</div>
+			<h3>List Genre</h3>
+			<table class="table table-stripped table-bordered table-dark">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.Name</td>
+							<td>
+								<a class="btn btn-success" href="/Genre/Update/@item.Id">Edit</a>
+								<a class="btn btn-danger" onclick="return window.confirm('Are you sure?')" href="/Genre/Delete/@item.Id">Delete</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
